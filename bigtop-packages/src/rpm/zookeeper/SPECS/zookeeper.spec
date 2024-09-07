@@ -17,15 +17,26 @@
 %define zookeeper_name zookeeper
 %define zookeeper_pkg_name zookeeper%{pkg_name_suffix}
 
-%define usr_lib_zookeeper %{parent_dir}/usr/lib/%{zookeeper_name}
-%define var_lib_zookeeper %{parent_dir}/var/lib/%{zookeeper_name}
-%define etc_zookeeper_conf_dist %{parent_dir}/etc/zookeeper/conf.dist
+%define var_lib_zookeeper /var/lib/%{zookeeper_name}
 
-%define bin_dir %{parent_dir}/%{_bindir}
-%define man_dir %{parent_dir}/%{_mandir}
-%define doc_dir %{parent_dir}/%{_docdir}
+%define usr_lib_zookeeper /usr/lib/%{zookeeper_name}
+%define etc_zookeeper_conf_dist /etc/%{zookeeper_name}/conf.dist
+
+%if "%{parent_dir}" != ""
+%define usr_lib_zookeeper %{parent_dir}/%{zookeeper_name}
+%define etc_zookeeper_conf_dist %{parent_dir}/%{zookeeper_name}/etc/%{zookeeper_name}/conf.dist
+%endif
+
+#%define bin_dir %{parent_dir}/%{_bindir}
+#%define man_dir %{parent_dir}/%{_mandir}
+#%define doc_dir %{parent_dir}/%{_docdir}
 %define include_dir %{parent_dir}/%{_includedir}
 %define lib_dir %{parent_dir}/%{_libdir}
+
+%define bin_dir %{parent_dir}/%{zookeeper_name}/bin
+%define man_dir %{parent_dir}/%{zookeeper_name}/man
+%define doc_dir %{parent_dir}/%{zookeeper_name}/doc
+
 
 # No prefix directory
 %define np_var_log_zookeeper /var/log/%{zookeeper_name}
@@ -52,8 +63,8 @@
     /usr/lib/rpm/brp-compress ; \
     %{nil}
 
-
-%define doc_zookeeper %{doc_dir}/%{zookeeper_name}
+#%define doc_zookeeper %{doc_dir}/%{zookeeper_name}/doc
+%define doc_zookeeper %{parent_dir}/%{zookeeper_name}/doc
 %define alternatives_cmd update-alternatives
 %define alternatives_dep update-alternatives
 %define chkconfig_dep    aaa_base
@@ -62,7 +73,9 @@
 
 %else
 
-%define doc_zookeeper %{doc_dir}/%{zookeeper_name}-%{zookeeper_version}
+#%define doc_zookeeper %{doc_dir}/%{zookeeper_name}-%{zookeeper_version}/doc
+%define doc_zookeeper %{parent_dir}/%{zookeeper_name}/doc
+
 %define alternatives_cmd alternatives
 %define alternatives_dep chkconfig 
 %define chkconfig_dep    chkconfig

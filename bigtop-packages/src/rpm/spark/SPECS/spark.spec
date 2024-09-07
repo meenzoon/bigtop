@@ -19,13 +19,21 @@
 
 %define etc_default %{parent_dir}/etc/default
 
-%define usr_lib_spark %{parent_dir}/usr/lib/%{spark_name}
-%define var_lib_spark %{parent_dir}/var/lib/%{spark_name}
+%define usr_lib_spark /usr/lib/%{spark_name}
+%define var_lib_spark /var/lib/%{spark_name}
 %define etc_spark %{parent_dir}/etc/%{spark_name}
 
-%define bin_dir %{parent_dir}/%{_bindir}
-%define man_dir %{parent_dir}/%{_mandir}
-%define doc_dir %{parent_dir}/%{_docdir}
+%define bin_dir /%{_bindir}
+%define man_dir /usr/lib/%{spark_name}/man
+%define doc_dir /usr/lib/%{spark_name}/doc
+
+%if "%{parent_dir}" != ""
+%define usr_lib_spark %{parent_dir}/%{spark_name}
+%define etc_spark %{parent_dir}/%{spark_name}/etc/%{spark_name}
+%define bin_dir %{parent_dir}/%{spark_name}/bin
+%define man_dir %{parent_dir}/%{spark_name}/man
+%define doc_dir %{parent_dir}/%{spark_name}/doc
+%endif
 
 # No prefix directory
 %define np_var_log_spark /var/log/%{spark_name}

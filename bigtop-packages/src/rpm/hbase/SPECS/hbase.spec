@@ -20,19 +20,27 @@
 
 %define etc_default %{parent_dir}/etc/default
 
-%define usr_lib_hbase %{parent_dir}/usr/lib/%{hbase_name}
-%define var_lib_hbase %{parent_dir}/var/lib/%{hbase_name}
-%define etc_hbase %{parent_dir}/etc/%{hbase_name}
+#%define usr_lib_hbase %{parent_dir}/usr/lib/%{hbase_name}
+#%define var_lib_hbase %{parent_dir}/var/lib/%{hbase_name}
+#%define etc_hbase %{parent_dir}/etc/%{hbase_name}
 
-%define usr_lib_hadoop %{parent_dir}/usr/lib/hadoop
-%define usr_lib_hadoop_hdfs %{parent_dir}/usr/lib/hadoop-hdfs
-%define usr_lib_hadoop_mapreduce %{parent_dir}/usr/lib/hadoop-mapreduce
-%define usr_lib_hadoop_yarn %{parent_dir}/usr/lib/hadoop-yarn
-%define usr_lib_zookeeper %{parent_dir}/usr/lib/zookeeper
+%define usr_lib_hbase %{parent_dir}/%{hbase_name}
+%define var_lib_hbase /var/lib/%{hbase_name}
+%define etc_hbase %{parent_dir}/%{hbase_name}/etc/%{hbase_name}
 
-%define bin_dir %{parent_dir}/%{_bindir}
-%define man_dir %{parent_dir}/%{_mandir}
-%define doc_dir %{parent_dir}/%{_docdir}
+%define usr_lib_hadoop %{parent_dir}/hadoop
+%define usr_lib_hadoop_hdfs %{parent_dir}/hadoop-hdfs
+%define usr_lib_hadoop_mapreduce %{parent_dir}/hadoop-mapreduce
+%define usr_lib_hadoop_yarn %{parent_dir}/hadoop-yarn
+%define usr_lib_zookeeper %{parent_dir}/zookeeper
+
+#%define bin_dir %{parent_dir}/%{_bindir}
+#%define man_dir %{parent_dir}/%{_mandir}
+#%define doc_dir %{parent_dir}/%{_docdir}
+
+%define bin_dir %{parent_dir}/%{hbase_name}/bin
+%define man_dir %{parent_dir}/%{hbase_name}/man
+%define doc_dir %{parent_dir}/%{hbase_name}/doc
 
 # No prefix directory
 %define np_var_log_hbase /var/log/%{hbase_name}

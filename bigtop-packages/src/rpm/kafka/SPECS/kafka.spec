@@ -19,15 +19,19 @@
 
 %define etc_default %{parent_dir}/etc/default
 
-%define usr_lib_kafka %{parent_dir}/usr/lib/%{kafka_name}
-%define var_lib_kafka %{parent_dir}/var/lib/%{kafka_name}
+%define usr_lib_kafka /usr/lib/%{kafka_name}
+%define var_lib_kafka /var/lib/%{kafka_name}
 %define etc_kafka_conf_dist %{parent_dir}/etc/%{kafka_name}/conf.dist
+
+%if "%{parent_dir}" != ""
+%define usr_lib_kafka %{parent_dir}/%{kafka_name}
+%endif
 
 %define usr_lib_zookeeper %{parent_dir}/usr/lib/zookeeper
 
-%define bin_dir %{parent_dir}/%{_bindir}
-%define man_dir %{parent_dir}/%{_mandir}
-%define doc_dir %{parent_dir}/%{_docdir}
+%define bin_dir %{parent_dir}/%{kafka_name}/bin
+%define man_dir %{parent_dir}/%{kafka_name}/man
+%define doc_dir %{parent_dir}/%{kafka_name}/doc
 
 # No prefix directory
 %define np_var_run_kafka /var/run/%{kafka_name}

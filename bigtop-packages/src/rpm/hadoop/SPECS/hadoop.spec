@@ -28,22 +28,41 @@
 
 %define etc_default %{parent_dir}/etc/default
 
-%define usr_lib_hadoop %{parent_dir}/usr/lib/%{hadoop_name}
-%define usr_lib_hdfs %{parent_dir}/usr/lib/%{hadoop_name}-hdfs
-%define usr_lib_yarn %{parent_dir}/usr/lib/%{hadoop_name}-yarn
-%define usr_lib_mapreduce %{parent_dir}/usr/lib/%{hadoop_name}-mapreduce
-%define var_lib_yarn %{parent_dir}/var/lib/%{hadoop_name}-yarn
-%define var_lib_hdfs %{parent_dir}/var/lib/%{hadoop_name}-hdfs
-%define var_lib_mapreduce %{parent_dir}/var/lib/%{hadoop_name}-mapreduce
-%define var_lib_httpfs %{parent_dir}/var/lib/%{hadoop_name}-httpfs
-%define var_lib_kms %{parent_dir}/var/lib/%{hadoop_name}-kms
-%define etc_hadoop %{parent_dir}/etc/%{hadoop_name}
+#%define usr_lib_hadoop %{parent_dir}/usr/lib/%{hadoop_name}
+#%define usr_lib_hdfs %{parent_dir}/usr/lib/%{hadoop_name}-hdfs
+#%define usr_lib_yarn %{parent_dir}/usr/lib/%{hadoop_name}-yarn
+#%define usr_lib_mapreduce %{parent_dir}/usr/lib/%{hadoop_name}-mapreduce
+#%define var_lib_yarn %{parent_dir}/var/lib/%{hadoop_name}-yarn
+#%define var_lib_hdfs %{parent_dir}/var/lib/%{hadoop_name}-hdfs
+#%define var_lib_mapreduce %{parent_dir}/var/lib/%{hadoop_name}-mapreduce
+#%define var_lib_httpfs %{parent_dir}/var/lib/%{hadoop_name}-httpfs
+#%define var_lib_kms %{parent_dir}/var/lib/%{hadoop_name}-kms
+#%define etc_hadoop %{parent_dir}/etc/%{hadoop_name}
 
-%define usr_lib_zookeeper %{parent_dir}/usr/lib/zookeeper
+%define usr_lib_hadoop %{parent_dir}/%{hadoop_name}
+%define usr_lib_hdfs %{parent_dir}/%{hadoop_name}-hdfs
+%define usr_lib_yarn %{parent_dir}/%{hadoop_name}-yarn
+%define usr_lib_mapreduce %{parent_dir}/%{hadoop_name}-mapreduce
+%define var_lib_yarn /var/lib/%{hadoop_name}-yarn
+%define var_lib_hdfs /var/lib/%{hadoop_name}-hdfs
+%define var_lib_mapreduce /var/lib/%{hadoop_name}-mapreduce
+%define var_lib_httpfs /var/lib/%{hadoop_name}-httpfs
+%define var_lib_kms /var/lib/%{hadoop_name}-kms
+%define etc_hadoop /etc/%{hadoop_name}
 
-%define bin_dir %{parent_dir}/%{_bindir}
-%define man_dir %{parent_dir}/%{_mandir}
-%define doc_dir %{parent_dir}/%{_docdir}
+#%define usr_lib_zookeeper %{parent_dir}/usr/lib/zookeeper
+%define usr_lib_zookeeper %{parent_dir}/zookeeper
+
+#%define bin_dir %{parent_dir}/%{_bindir}
+#%define man_dir %{parent_dir}/%{_mandir}
+#%define doc_dir %{parent_dir}/%{_docdir}
+#%define include_dir %{parent_dir}/%{_includedir}
+#%define lib_dir %{parent_dir}/%{_libdir}
+#%define doc_hadoop %{doc_dir}/%{hadoop_name}-%{hadoop_version}
+
+%define bin_dir %{parent_dir}/%{hadoop_name}/bin
+%define man_dir %{parent_dir}/%{hadoop_name}/man
+%define doc_dir %{parent_dir}/%{hadoop_name}/doc
 %define include_dir %{parent_dir}/%{_includedir}
 %define lib_dir %{parent_dir}/%{_libdir}
 %define doc_hadoop %{doc_dir}/%{hadoop_name}-%{hadoop_version}
